@@ -1,0 +1,141 @@
+<?php
+
+//connect to database
+$db=mysqli_connect("localhost","root","","hatbazar");
+if(isset($_POST['Insert']))
+{
+    $product_name=mysql_real_escape_string($_POST['product_name']);
+    $cat_id=mysql_real_escape_string($_POST['cat_id']);
+    $product_desc=mysql_real_escape_string($_POST['product_desc']);
+    $product_code=mysql_real_escape_string($_POST['product_code']);
+    $product_image=mysql_real_escape_string($_POST['product_image']);
+    $product_price=mysql_real_escape_string($_POST['product_price']);
+    $RAM=mysql_real_escape_string($_POST['RAM']);
+    $graficCard=mysql_real_escape_string($_POST['graficCard']);
+    $batterylifetime=mysql_real_escape_string($_POST['batterylifetime']);
+    $size=mysql_real_escape_string($_POST['size']);
+    $brand=mysql_real_escape_string($_POST['brand']);
+
+    $sql="INSERT INTO products_list(product_name,cat_id,product_desc,product_code,product_image,product_price,RAM,graficCard,batterylifetime,size,brand) VALUES('$product_name','$cat_id','$product_desc','$product_code','$product_image','$product_price','$RAM','$graficCard','$batterylifetime','$size','$brand')";
+    mysqli_query($db,$sql);  
+    $_SESSION['message']=""; 
+    header("insertproduct.php");  //redirect home pageproduct_image
+}
+?>
+<html>
+	<head>
+		<title>Insert product</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+<body id="body-color">
+
+<?php
+    if(isset($_SESSION['message']))
+    {
+         echo "<div id='error_msg'>".$_SESSION['message']."</div>";
+         unset($_SESSION['message']);
+    }
+?>
+
+<?php require 'inc/header.php'; ?>
+<?php include 'adminpanel.php';?>
+	<section class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-info">
+				  <div class="panel-heading">
+				    <h3 class="panel-title"><i class="fa fa-sign-in" aria-hidden="true"></i>Insertion Table</span></h3>
+				  </div>
+				  <div class="panel-body">
+				    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+					    <div class="input-group">
+					      <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></div>
+					      <input type="product_name" name="product_name" class="form-control" id="product_name" placeholder="Product Name">
+					    </div>
+					  </div>
+
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+					    <div class="input-group">
+					      <div class="input-group-addon"><i class="fa fa-id-card-o" aria-hidden="true"></i></div>
+					      <input type="cat_id" name="cat_id" class="form-control" id="cat_id" placeholder="Category Id">
+					    </div>
+					  </div>
+
+			    	 <div class="form-group">
+					    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+					   <div class="input-group">
+					 	 <div class="input-group-addon"><i class="fa fa-audio-description" aria-hidden="true"></i></div>
+					  	<input type="product_desc" name="product_desc" class="form-control" id="product_desc" placeholder="Product description">
+					  </div>
+					 </div>
+
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInpphoneutAmount">Amount (in dollars)</label>
+					    <div class="input-group">
+					      <div class="input-group-addon"><i class="fa fa-id-badge" aria-hidden="true"></i></div>
+					      <input type="product_code" name="product_code" class="form-control" id="product_code" placeholder="product_code">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInpphoneutAmount">Amount (in dollars)</label>
+					    <div class="input-group">
+					      <div class="input-group-addon"><i class="glyphicon glyphicon-picture" aria-hidden="true"></i></div>
+					      <input type="product_image" name="product_image" class="form-control" id="product_image" placeholder="Product Image">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInpphoneutAmount">Amount (in dollars)</label>
+					    <div class="input-group">
+					      <div class="input-group-addon">&#2547<i class="" aria-hidden="true"></i></div>
+					      <input type="product_price" name="product_price" class="form-control" id="product_price" placeholder="Product price">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInpphoneutAmount">Amount (in dollars)</label>
+						    <div class="input-group">
+						      <div class="input-group-addon"><i class="" aria-hidden="true"></i></div>
+						      <input type="RAM" name="RAM" class="form-control" id="RAM" placeholder="Product RAM">
+						    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInpphoneutAmount">Amount (in dollars)</label>
+						    <div class="input-group">
+						      <div class="input-group-addon"><i class="" aria-hidden="true"></i></div>
+						      <input type="graficCard" name="graficCard" class="form-control" id="graficCard" placeholder="Product graficCard">
+						    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInpphoneutAmount">Amount (in dollars)</label>
+						    <div class="input-group">
+						      <div class="input-group-addon"><i class="" aria-hidden="true"></i></div>
+						      <input type="batterylifetime" name="batterylifetime" class="form-control" id="batterylifetime" placeholder="Product batterylifetime">
+						    </div>
+					  </div>
+					   <div class="form-group">
+					    <label class="sr-only" for="exampleInpphoneutAmount">Amount (in dollars)</label>
+						    <div class="input-group">
+						      <div class="input-group-addon"><i class="" aria-hidden="true"></i></div>
+						      <input type="size" name="size" class="form-control" id="size" placeholder="Display size">
+						    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInpphoneutAmount">Amount (in dollars)</label>
+						    <div class="input-group">
+						      <div class="input-group-addon"><i class="" aria-hidden="true"></i></div>
+						      <input type="brand" name="brand" class="form-control" id="brand" placeholder="Product brand">
+						    </div>
+					  </div>
+					  
+					  <button type="submit" name="Insert" class="btn btn-primary">Insert</button>
+					</form>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</section>
+<?php require 'footer.php'; ?>
+
